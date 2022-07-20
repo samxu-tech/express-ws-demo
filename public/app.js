@@ -53,7 +53,14 @@
       showMessage('WebSocket connection closed');
       ws = null;
     };
+    ws.addEventListener('message', function message(data) {
+      console.log('received: %s', data.data);
+      showMessage(data.data);
+    })
+
   };
+
+
 
   wsSendButton.onclick = function () {
     if (!ws) {
@@ -63,5 +70,15 @@
 
     ws.send('Hello World!');
     showMessage('Sent "Hello World!"');
+  };
+
+  wsSendBadButton.onclick = function () {
+    if (!ws) {
+      showMessage('No WebSocket connection');
+      return;
+    }
+
+    ws.send('bad guy');
+    showMessage('Sent "bad guy"');
   };
 })();

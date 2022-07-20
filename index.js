@@ -88,6 +88,7 @@ wss.on('connection', function (ws, request) {
     // Here we can now use session parameters.
     //
     console.log(`Received message ${message} from user ${userId}`);
+    ws.send('Websocket server has received your message!')
   });
 
   ws.on('close', function () {
